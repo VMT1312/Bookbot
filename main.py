@@ -17,6 +17,19 @@ def get_num_chars(text):
             char_dict[lowered_word] = 1
     return char_dict
 
+def to_list(char_dict):
+    ls_char = []
+    c = {}
+    for word in text:
+        check = {}
+        lowered = word.lower()
+        if lowered.isalpha() and lowered not in c:
+            c[lowered] = char_dict[lowered]
+            check['character'] = lowered
+            check['count'] = c[lowered]
+            ls_char.append(check)
+    return ls_char
+
 book_path = "books/frankenstein.txt"
 
 text = get_book_text(book_path)
@@ -25,6 +38,8 @@ num_words = get_num_words(text)
 
 chars_num = get_num_chars(text)
 
+ls_chars_num = to_list(chars_num)
+
 print(f"{num_words} words found in the document")
 
-print(chars_num)
+print(ls_chars_num)
