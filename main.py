@@ -26,6 +26,7 @@ def to_list(char_dict):
             ls_char.append({'character': char, 'count': char_dict[char]})
     ls_char.sort(reverse=True, key=sort_on)
     return ls_char
+
 def main():
     book_path = "books/frankenstein.txt"
 
