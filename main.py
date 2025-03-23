@@ -1,34 +1,13 @@
-def get_num_words(text):
-    words = text.split()
-    return len(words)
+from stats import *
+import sys
 
-def get_book_text(path):
-    with open(path) as f:
-        return f.read()
-    
-def get_num_chars(text):
-    char_dict = {}
-    for word in text:
-        lowered_word = word.lower()
-        if lowered_word in char_dict:
-            char_dict[lowered_word] +=1
-        else:
-            char_dict[lowered_word] = 1
-    return char_dict
-
-def sort_on(dict):
-    return dict['count']
-
-def to_list(char_dict):
-    ls_char = []
-    for char in char_dict:
-        if char.isalpha():
-            ls_char.append({'character': char, 'count': char_dict[char]})
-    ls_char.sort(reverse=True, key=sort_on)
-    return ls_char
 
 def main():
-    book_path = "books/frankenstein.txt"
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
+    book_path = sys.argv[1]
 
     text = get_book_text(book_path)
 
@@ -45,7 +24,7 @@ def main():
     for i in range(len(ls_chars_num)):
         character = ls_chars_num[i]['character']
         times = ls_chars_num[i]['count']
-        print(f"The {character} character was found {times} times")
+        print(f"{character}: {times}")
 
     print("--- End report ---")
 
